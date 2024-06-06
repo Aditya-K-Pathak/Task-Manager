@@ -14,7 +14,7 @@ public class Mapper {
     
     @PostMapping("/create-user/")
     public ResponseEntity<String> createUser(@RequestParam String username, @RequestParam String password) throws IOException{
-        if (!db.isUserPresent(username, password)) 
+        if (db.isUserPresent(username, password)) 
             return ResponseEntity.badRequest().body("Username Already Exists!");
 
         db.addUser(username, password);
