@@ -1,0 +1,10 @@
+This is a MicroServices based WebApp basically a Task Manager
+
+Building Order
+
+    1. Authentication
+
+
+### Update Log
+    * [06-06-20024] [Authentication] Completed mapping and UserAuth logic.
+        * Added 2 API Endpoints - `/create-user/` and `/get-user/`
