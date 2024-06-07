@@ -4,6 +4,7 @@ Building Order
 
     1. Authentication
     2. TaskHandler
+    3. View/UI
 
 
 ### Update Log
@@ -21,4 +22,6 @@ Building Order
             - `POST /update-task/id/`  
             - `POST /delete-task/id/`  
             - `GET /`
+
+    3) [08-06-2024] [UIServiceGateway] Completed and Integrated Auhentication Microservice with UI.
 

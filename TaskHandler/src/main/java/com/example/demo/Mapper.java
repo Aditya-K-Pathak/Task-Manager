@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,10 +35,10 @@ class Response{
 public class Mapper{
     private String FILEPATH = "src/main/secrets/";
 
+    @CrossOrigin
     @GetMapping("/create-task-file/")
     public ResponseEntity<String> createTaskFile(@RequestParam String username, @RequestParam String password) throws IOException {
         String filepath = this.FILEPATH + username + "_" + password + ".json";
-        System.out.println(filepath);
         File file = new File(filepath);
 
 
@@ -51,6 +52,7 @@ public class Mapper{
         return ResponseEntity.ok("File created");
     }
 
+    @CrossOrigin
     @GetMapping("/get-all-task/")
     public ResponseEntity<List<Task>> getAllTasks(@RequestParam String username, @RequestParam String password) throws IOException{
         TaskScheduler ts = new TaskScheduler();

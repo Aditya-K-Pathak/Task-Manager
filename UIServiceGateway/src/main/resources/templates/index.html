@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="loader"></div>
+    <div id="content">
+        <form action="/dashboard/">
+            <h1>Login</h1>
+            <div class="form-field">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="Username">
+                <span id="usernameErr"></span>
+            </div>
+    
+            <div>
+                <label for="password">Password</label>
+                <input type="text" id="password" name="password" placeholder="Password">
+                <span id="passwordErr"></span>
+            </div>
+    
+        </form>
+        <button id="submit" onclick="fetch_details()">Submit</button>
+
+        <div>
+            <p>New User? <button onclick="setSignUp()">Sign up</button></p> 
+        </div>
+    </div>
+</body>
+<script src="js/index.js"></script>
+</html>

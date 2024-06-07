@@ -1,0 +1,135 @@
+body {
+    height: 100vh;
+    background-image: url('../Images/bg.png');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+span {
+    color: red;
+    font-size: 10px;
+}
+
+#content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    min-width: 40%;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    backdrop-filter: blur(7px) saturate(150%);
+    -webkit-backdrop-filter: blur(7px) saturate(200%);
+    background-color: rgba(57, 79, 119, 0.74);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+p{
+    color: white;
+}
+input {
+    color: white;
+    margin-bottom: 5%;
+}
+label{
+    font-size: 20px;
+}
+button{
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+    color: white;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    background-color: transparent;
+    border: transparent;
+    border-bottom: solid white 1px;
+    font-size: 18px;
+    outline: transparent;
+}
+
+#submit {
+    background-color: #2d8daa;
+    color: white;
+    padding: 3%;
+    margin: 3%;
+    border-radius: 12px;
+    border: transparent;
+}
+
+.loader {
+    visibility: hidden;
+    height: 40px;
+    aspect-ratio: .866;
+    display: grid;
+    background: conic-gradient(from -121deg at right, #0000, #BF1E62 1deg 60deg, #0000 61deg);
+    animation: l11-0 2s infinite;
+    transform-origin: 33% 50%;
+}
+
+.loader:before,
+.loader:after {
+    content: "";
+    grid-area: 1/1;
+    background: conic-gradient(from -121deg at right, #0000, #FFA588 1deg 60deg, #0000 61deg);
+    animation: inherit;
+    animation-name: l11-1;
+}
+
+.loader:after {
+    --s: 30px;
+    background: conic-gradient(from -121deg at right, #0000, #027B7F 1deg 60deg, #0000 61deg);
+}
+
+@keyframes l11-0 {
+    0% {
+        transform: translate(-30px) rotate(0) translate(0) rotate(0)
+    }
+
+    25% {
+        transform: translate(30px) rotate(0) translate(0) rotate(0)
+    }
+
+    50% {
+        transform: translate(30px) rotate(180deg) translate(0) rotate(0)
+    }
+
+    75% {
+        transform: translate(30px) rotate(180deg) translate(60px) rotate(0)
+    }
+
+    100% {
+        transform: translate(30px) rotate(180deg) translate(60px) rotate(180deg)
+    }
+}
+
+@keyframes l11-1 {
+
+    0%,
+    25%,
+    50%,
+    75%,
+    100% {
+        transform: translate(0)
+    }
+
+    12.5%,
+    62.5% {
+        transform: translate(var(--s, 15px))
+    }
+}
