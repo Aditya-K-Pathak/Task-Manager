@@ -25,3 +25,5 @@ Building Order
 
     3) [08-06-2024] [UIServiceGateway] Completed and Integrated Auhentication Microservice with UI.
 
+    4) [10-06-2024] [UIServiceGateway] Added graph to UI and created backend Connectivity.
+

@@ -14,17 +14,17 @@ public class Mapper {
     UserHandler db = new UserHandler();
     @CrossOrigin
     @PostMapping("/create-user/")
-    public ResponseEntity<String> createUser(@RequestParam String username, @RequestParam String password) throws IOException{
+    public ResponseEntity<String> createUser(@RequestParam String username, @RequestParam String password, @RequestParam String email) throws IOException{
         if (db.isUserPresent(username, password)) 
             return ResponseEntity.badRequest().body("Username Already Exists!");
 
-        db.addUser(username, password);
+        db.addUser(username, password, email);
         return ResponseEntity.ok("User Created Successfully!");
     }
 
     @CrossOrigin
     @PostMapping("/get-user/")
-    public ResponseEntity<Boolean> getUser(@RequestParam String username, @RequestParam String password) throws IOException {
+    public ResponseEntity<Boolean> getUser(@RequestParam String username, @RequestParam String password, @RequestParam String email) throws IOException {
         return ResponseEntity.ok(db.isUserPresent(username, password));
     }
 

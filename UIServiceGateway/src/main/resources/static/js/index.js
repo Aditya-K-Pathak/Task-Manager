@@ -3,11 +3,16 @@ var signup = false;
 const fetch_details = async () => {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
+  const email = document.getElementById("email").value;
+
+  localStorage.setItem("username", username)
+  localStorage.setItem("password",  password)
+  localStorage.setItem("email",  email)
 
   document.getElementsByClassName("loader")[0].style.visibility = "visible";
   if (signup) {
     fetch(
-      `http://localhost:8000/create-user/?username=${username}&password=${password}`,
+      `http://localhost:8000/create-user/?username=${username}&password=${password}&email=${email}`,
       {
         method: "POST",
       }
@@ -34,7 +39,7 @@ const fetch_details = async () => {
   }
   document.getElementsByClassName("loader")[0].style.visibility = "hidden";
 
-  const valid_user = await fetch(`http://localhost:8000/get-user/?username=${username}&password=${password}`, {
+  const valid_user = await fetch(`http://localhost:8000/get-user/?username=${username}&password=${password}&email=${email}`, {
     method: "POST",
   })
   const isvalid = await valid_user.json()
@@ -44,7 +49,6 @@ const fetch_details = async () => {
         method: "GET",
       })
       const data = await reponse.json()
-      console.log(data)
   } else{
     alert("Invalid Credentials!")
   }

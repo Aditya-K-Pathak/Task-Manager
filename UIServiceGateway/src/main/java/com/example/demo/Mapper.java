@@ -15,10 +15,10 @@ public class Mapper {
         return "index";
     }
 
-    @GetMapping("/dashboard/")
+    @PostMapping("/dashboard/")
     public String dashboard(@RequestParam String username, @RequestParam String password) {
         System.out.println(username + "|" + password);
-        return "index";
+        return "dashboard";
     }
 }
 

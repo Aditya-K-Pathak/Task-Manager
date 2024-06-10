@@ -13,11 +13,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 class User {
     private String username;
     private String password;
+    private String email;
 
     @JsonCreator
-    public User(@JsonProperty("username") String username, @JsonProperty("password") String password) {
+    public User(@JsonProperty("username") String username, 
+            @JsonProperty("password") String password, 
+            @JsonProperty("email") String email) {
         this.username = username;
         this.password = password;
+        this.email = email;
     }
 
     public String getUsername() {
@@ -28,9 +32,13 @@ class User {
         return password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     @Override
     public String toString() {
-        return this.username + " | " + this.password;
+        return this.username + " | " + this.email;
     }
 }
 
@@ -38,9 +46,9 @@ public class UserHandler {
     private final String FILEPATH = "src/main/secrets/users.json";
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public boolean addUser(String username, String password) throws IOException {
+    public boolean addUser(String username, String password, String email) throws IOException {
         List<User> users = readUsersFromFile();
-        users.add(new User(username, password));
+        users.add(new User(username, password, email));
         writeUsersToFile(users);
         return true;
     }

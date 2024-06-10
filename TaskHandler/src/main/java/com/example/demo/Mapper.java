@@ -61,6 +61,61 @@ public class Mapper{
         return ResponseEntity.ok(taskList);
     }
 
+    @CrossOrigin
+    @PostMapping("/get-task-summary/")
+    public ResponseEntity<Summary> getTaskSummary(@RequestParam String username, @RequestParam String password) throws IOException{
+        Summary summary = new Summary();
+        TaskScheduler ts = new TaskScheduler();
+        ts.FILEPATH += username + "_" + password + ".json";
+        List<Task> taskList = ts.readTaskFromFile();
+        System.err.println(taskList);
+
+        int totalReceivedTasks = 0;
+        int totalHighPriorityTasks = 0;
+        int totalLowPriorityTask = 0;
+        int totalCompleteTasks = 0;
+        int totalHighPriorityCompleteTasks = 0;
+        int totalLowPriorityCompleteTask = 0;
+        int totalIncompleteTasks = 0;
+        int totalHighPriorityIncompleteTasks = 0;
+        int totalLowPriorityIncompleteTasks = 0;
+
+        for (Task task: taskList){
+            totalReceivedTasks ++;
+            if (task.getPriority()){
+                totalHighPriorityTasks ++;
+            } else {
+                totalLowPriorityTask ++;
+            }
+            if (task.getStatus()){
+                totalCompleteTasks ++;
+                if (task.getPriority()){
+                    totalHighPriorityCompleteTasks ++;
+                } else {
+                    totalLowPriorityCompleteTask ++;
+                }
+            } else{
+                totalIncompleteTasks ++;
+                if (task.getPriority()){
+                    totalHighPriorityIncompleteTasks ++;
+                } else {
+                    totalLowPriorityIncompleteTasks ++;
+                }
+            }
+        }
+        summary.setTotalReceivedTasks(totalReceivedTasks);
+        summary.setTotalHighPriorityTasks(totalHighPriorityTasks);
+        summary.setTotalLowPriorityTasks(totalLowPriorityTask);
+        summary.setTotalCompleteTasks(totalCompleteTasks);
+        summary.setTotalIncompleteTasks(totalIncompleteTasks);
+        summary.setTotalHighPriorityCompleteTasks(totalHighPriorityCompleteTasks);
+        summary.setTotalLowPriorityCompleteTasks(totalLowPriorityCompleteTask);
+        summary.setTotalHighPriorityIncompleteTasks(totalHighPriorityIncompleteTasks);
+        summary.setTotalLowPriorityIncompleteTasks(totalLowPriorityIncompleteTasks);
+
+        return ResponseEntity.ok(summary);
+    }
+
     @PostMapping("/add-task/")
     public ResponseEntity<String> addTask(@RequestParam String username, @RequestParam String password, 
         @RequestParam String name, @RequestParam String desc, 

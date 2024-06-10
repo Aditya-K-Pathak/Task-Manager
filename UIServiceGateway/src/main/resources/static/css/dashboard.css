@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
+body {
+    color: antiquewhite;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(12, 12, 86, 1) 27%, rgba(0, 0, 0, 1) 100%);
+}
+
+#chartContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+section{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+header{
+    min-height: 10vh;
+    margin: 10px;
+}
+
+h1{
+    font-family: Libre Baskerville;
+    font-size: 64px;
+}
+h3{
+    font-family: Merriweather;
+    font-size: 30px;
+}
