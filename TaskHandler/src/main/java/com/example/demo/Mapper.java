@@ -3,6 +3,7 @@ package com.example.demo;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -119,8 +120,9 @@ public class Mapper{
     @PostMapping("/add-task/")
     public ResponseEntity<String> addTask(@RequestParam String username, @RequestParam String password, 
         @RequestParam String name, @RequestParam String desc, 
-        @RequestParam Boolean priority, @RequestParam Boolean status) throws IOException {
-            Task task = new Task(name, desc, priority, status);
+        @RequestParam Boolean priority, @RequestParam Boolean status, @RequestParam String deadline) throws IOException {
+            Task task = new Task(name, desc, priority, status, deadline);
+            System.err.println(task);
 
             TaskScheduler ts = new TaskScheduler();
             ts.FILEPATH += username + "_" + password + ".json";

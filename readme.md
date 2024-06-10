@@ -27,3 +27,5 @@ Building Order
 
     4) [10-06-2024] [UIServiceGateway] Added graph to UI and created backend Connectivity.
 
+    5) [10-06-2024] [TaskHandler] Added deadline attribute to Task that accepts date (YYYY/MM/DD).
+

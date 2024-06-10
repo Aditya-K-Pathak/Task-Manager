@@ -10,17 +10,20 @@ class Task implements Serializable {
     private String id;
     private String name;
     private String description;
+    private String deadline;
     private Boolean priority;
     private Boolean status;
 
     @JsonCreator
     Task(@JsonProperty("name") String name, @JsonProperty("desc") String description,
-            @JsonProperty("priority") Boolean priority, @JsonProperty("status") Boolean status) {
+            @JsonProperty("priority") Boolean priority, @JsonProperty("status") Boolean status, 
+            @JsonProperty("deadline") String deadline) {
         this.id = LocalDateTime.now().toString();
         this.name = name;
         this.description = description;
         this.priority = priority;
         this.status = status;
+        this.deadline = deadline;
     }
 
     public String getId() {
@@ -42,6 +45,9 @@ class Task implements Serializable {
     public Boolean getPriority() {
         return this.priority;
     }
+    public String getDeadline() {
+        return this.deadline;
+    }
 
     public String setName(String name) {
         return this.name = name;
@@ -57,6 +63,10 @@ class Task implements Serializable {
 
     public Boolean setStatus(Boolean status) {
         return this.status = status;
+    }
+
+    public String setDeadline(String deadline) {
+        return this.deadline = deadline;
     }
 
     @Override
