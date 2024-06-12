@@ -1,10 +1,9 @@
 package com.example.demo;
 
+import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -16,8 +15,7 @@ public class Mapper {
     }
 
     @PostMapping("/dashboard/")
-    public String dashboard(@RequestParam String username, @RequestParam String password) {
-        System.out.println(username + "|" + password);
+    public String dashboard(@RequestParam String username, @RequestParam String password, Model model) {
         return "dashboard";
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,10 +12,12 @@
         <h3 id="heading-description"></h3>
     </section>
     <section id="dashboard">
+        <h2>Your Task Summary</h2>
         <div id="chartContainer">
-            <canvas id="myChart" style="width:60%;max-width:600px"></canvas>
-            <canvas id="myChart1" style="width:60%;max-width:600px"></canvas>
-            <canvas id="myChart2" style="width:60%;max-width:600px"></canvas>
+            <canvas id="myChart" style="width:300;max-width:600px"></canvas>
+            <canvas id="myChart1" style="width:300;max-width:600px"></canvas>
+            <canvas id="myChart2" style="width:300;max-width:600px"></canvas>
+            <canvas id="line-chart" class="w-full"></canvas>
         </div>
     </section>
 </body>

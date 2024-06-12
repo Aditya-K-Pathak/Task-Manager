@@ -3,7 +3,6 @@ package com.example.demo;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -69,7 +68,6 @@ public class Mapper{
         TaskScheduler ts = new TaskScheduler();
         ts.FILEPATH += username + "_" + password + ".json";
         List<Task> taskList = ts.readTaskFromFile();
-        System.err.println(taskList);
 
         int totalReceivedTasks = 0;
         int totalHighPriorityTasks = 0;
@@ -83,25 +81,16 @@ public class Mapper{
 
         for (Task task: taskList){
             totalReceivedTasks ++;
-            if (task.getPriority()){
-                totalHighPriorityTasks ++;
-            } else {
-                totalLowPriorityTask ++;
-            }
+            if (task.getPriority()) totalHighPriorityTasks ++;
+            else totalLowPriorityTask ++;
             if (task.getStatus()){
                 totalCompleteTasks ++;
-                if (task.getPriority()){
-                    totalHighPriorityCompleteTasks ++;
-                } else {
-                    totalLowPriorityCompleteTask ++;
-                }
-            } else{
+                if (task.getPriority()) totalHighPriorityCompleteTasks ++;
+                else totalLowPriorityCompleteTask ++;
+            } else {
                 totalIncompleteTasks ++;
-                if (task.getPriority()){
-                    totalHighPriorityIncompleteTasks ++;
-                } else {
-                    totalLowPriorityIncompleteTasks ++;
-                }
+                if (task.getPriority()) totalHighPriorityIncompleteTasks ++;
+                else totalLowPriorityIncompleteTasks ++;
             }
         }
         summary.setTotalReceivedTasks(totalReceivedTasks);

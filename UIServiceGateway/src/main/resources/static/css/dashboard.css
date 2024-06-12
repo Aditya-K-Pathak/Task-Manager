@@ -10,6 +10,29 @@ body {
 #chartContainer{
     display: flex;
     flex-wrap: wrap;
+    border-radius: 5px;
+    margin: 1%;
+    padding: 2%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    backdrop-filter: blur(7px) saturate(100%);
+    -webkit-backdrop-filter: blur(4px) saturate(200%);
+    background-color: rgba(10, 33, 72, 0.74);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+#chartContainer canvas{
+    margin: 2%;
+}
+
+#line-chart{
+    max-width: 600px;
+    max-height: 600px;
+}
+
+#chartContainer canvas:hover{
+    width: 700px;
+    height: 700px;
 }
 
 section{

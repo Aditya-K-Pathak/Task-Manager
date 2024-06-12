@@ -1,0 +1,29 @@
+Client {
+    id -> string
+    name -> string
+    address -> string
+    phone -> string
+    availbale_credits -> float
+
+    getAvailableCredit()
+    setAvailableCredit()
+}
+
+Messages {
+    clientid -> string
+    messageid -> string
+    daysLeft -> int
+    message -> string
+    cost/message -> float
+}
+
+CurQ{
+    addMessage(Message)
+}
+
+Purge {
+
+    getAllMessages()
+    reduceDaysLeft(Message)
+    delete0Tasks()
+}

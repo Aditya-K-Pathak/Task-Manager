@@ -5,6 +5,7 @@ Building Order
     1. Authentication
     2. TaskHandler
     3. View/UI
+    4. Dispatcher
 
 
 ### Update Log
@@ -29,3 +30,6 @@ Building Order
 
     5) [10-06-2024] [TaskHandler] Added deadline attribute to Task that accepts date (YYYY/MM/DD).
 
+    6) [11-06-2024] [Dispatcer] Added a mail delivery agent implemented in python to confirm Task addition.
+
+    7) []
