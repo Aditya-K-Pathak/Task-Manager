@@ -67,3 +67,21 @@ const setLogin = () => {
   document.getElementsByTagName("p")[0].innerHTML =
     "Not a Member? <button onclick='setSignUp()'>Sign up</button>";
 };
+
+const validateUsername = () => {
+  let username = document.getElementById("username").value 
+  if (username.length == 0) {
+    document.getElementById("usernameErr").innerHTML = "Invalid Username"
+  } else {
+    document.getElementById("usernameErr").innerHTML = ""
+  }
+}
+
+const validatePassword = () => {
+  let password = document.getElementById("password").value 
+  if (password.length <= 8) {
+    document.getElementById("passwordErr").innerHTML = "Password it too short!"
+  } else {
+    document.getElementById("passwordErr").innerHTML = ""
+  }
+}

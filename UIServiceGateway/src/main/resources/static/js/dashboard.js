@@ -1,20 +1,23 @@
 const heroHeading = "Task Manager".toUpperCase();
 const heroDescription = "Manage your tasks with ease".toUpperCase();
 const speed = 100;
-var i = 0, j = 0;
+var i = 0,
+  j = 0;
 
 const username = localStorage.getItem("username");
 const password = localStorage.getItem("password");
-
+var allTask = [];
 const getAllTasks = () => {
   fetch(
-    `http://localhost:8080/get-all-tasks/?username=${username}&password=${password}`,
-    
+    `http://localhost:8080/get-all-task/?username=${username}&password=${password}`
   )
-   .then((response) => {
+    .then((response) => {
       return response.json();
     })
-}
+    .then((response) => {
+      return (allTask = response);
+    });
+};
 const writeHeading = () => {
   if (i < heroHeading.length) {
     document.getElementById("heading").innerHTML += heroHeading[i];
@@ -114,7 +117,7 @@ const getSummary = async () => {
         options: {
           title: {
             display: true,
-            text: "High Priority Tasks",
+            text: "Low Priority Tasks",
           },
         },
       });
@@ -209,15 +212,170 @@ const getSummary = async () => {
 
 writeHeading();
 writeDescription();
+getAllTasks();
 getSummary();
 
-// var cc = {
-//   count: 0,
-//   function () {
-//     this.count++;
-//     console.log(this.count);
-//   }
-// }
+var object = {};
+setTimeout(() => {
+  for (let i = 0; i < allTask.length; i++) {
+    document.getElementById("tasklist").innerHTML += `
+    <div class="task" id=${allTask[i].id}>
+      <h2 id='${allTask[i].id}name'>${allTask[i].name}</h2>
+      <h4 id='${allTask[i].id}timeline'>${allTask[i].id.slice(0, 10)} | ${
+      allTask[i].deadline
+    }</h4>
+    `;
+    if (allTask[i].priority)
+      document.getElementById(
+        allTask[i].id
+      ).innerHTML += `<p id='${allTask[i].id}priority'>Priority: High</p>`;
+    else
+      document.getElementById(
+        allTask[i].id
+      ).innerHTML += `<p id='${allTask[i].id}priority'>Priority: Low</p>`;
+    if (allTask[i].status)
+      document.getElementById(
+        allTask[i].id
+      ).innerHTML += `<p id='${allTask[i].id}status'>Status: Completed</p>`;
+    else
+      document.getElementById(
+        allTask[i].id
+      ).innerHTML += `<p id='${allTask[i].id}status'>Status: Incomplete</p>`;
+    document.getElementById(allTask[i].id).innerHTML += `
+      <p id='${allTask[i].id}desc'>${allTask[i].desc}</p>
+    </div>
+    `;
+    allTask[i].id = allTask[i].id.slice(0, 10);
+    if (allTask[i].id in object == false) {
+      object[allTask[i].id] = [0, 0];
+    }
+    object[allTask[i].id][0]++;
+    if (allTask[i].status) object[allTask[i].id][1]++;
+  }
 
-// cc.function();
-// cc.function();
+  var taskdiv = document.getElementsByClassName("task");
+  for (let i = 0; i < taskdiv.length; i++) {
+    taskdiv[i].addEventListener("click", () => {
+      document.getElementById("overlay").style.display = "block";
+      if (i != 0) {
+        document.getElementById("id").value = taskdiv[i].id;
+        document.getElementById("taskname").value = document.getElementById(
+          `${taskdiv[i].id}name`
+        ).innerText;
+        document.getElementById("deadline").value = document
+          .getElementById(`${taskdiv[i].id}timeline`)
+          .innerText.split(" | ")[1];
+        document
+          .getElementById(`${taskdiv[i].id}priority`)
+          .innerText.includes("High") == true
+          ? (document.getElementById("selectPriority").value = true)
+          : (document.getElementById("selectPriority").value = false);
+        document
+          .getElementById(`${taskdiv[i].id}status`)
+          .innerText.includes("Completed") == true
+          ? (document.getElementById("selectStatus").value = true)
+          : (document.getElementById("selectStatus").value = false);
+        document.getElementById("taskdesc").value = document.getElementById(
+          `${taskdiv[i].id}desc`
+        ).innerText;
+        document.getElementById("overlay").style.display = "flex";
+      }
+    });
+  }
+}, 100);
+
+const disappear = () => {
+  document.getElementById("overlay").style.display = "none";
+};
+
+const updateData = () => {
+  var id = document.getElementById("id").value;
+  var name = document.getElementById("taskname").value;
+  var deadline = document.getElementById("deadline").value;
+  var priority = document.getElementById("selectPriority").value;
+  var status = document.getElementById("selectStatus").value;
+  var desc = document.getElementById("taskdesc").value;
+
+  fetch(
+    `http://localhost:8080/update-task/id/?username=${localStorage.getItem(
+      "username"
+    )}&password=${localStorage.getItem(
+      "password"
+    )}&id=${id}&name=${name}&priority=${priority}&status=${status}&desc=${desc}&deadline=${deadline}`,
+    {
+      method: "POST",
+    }
+  ).then((res) => {
+    if (res.ok) {
+      alert("Database Updated!");
+    }
+    return res.json();
+  });
+};
+
+const addData = () => {
+  var id = document.getElementById("id").value;
+  var name = document.getElementById("taskname").value;
+  var deadline = document.getElementById("deadline").value;
+  var priority = document.getElementById("selectPriority").value;
+  var status = document.getElementById("selectStatus").value;
+  var desc = document.getElementById("taskdesc").value;
+
+  if (id != "") {
+    return alert("Invalid Request!");
+  }
+
+  fetch(
+    `http://localhost:8080/add-task/?username=${localStorage.getItem(
+      "username"
+    )}&password=${localStorage.getItem(
+      "password"
+    )}&name=${name}&priority=${priority}&status=${status}&desc=${desc}&deadline=${deadline}`,
+    {
+      method: "POST",
+    }
+  ).then((res) => {
+    if (res.ok) {
+      alert("Database Updated!");
+    }
+    return res.json();
+  });
+};
+
+const deleteData = () => {
+  document.getElementById("id").disabled = false;
+  var id = document.getElementById("id").value;
+
+  fetch(
+    `http://localhost:8080/delete-task/id/?username=${localStorage.getItem(
+      "username"
+    )}&password=${localStorage.getItem("password")}&id=${id}`,
+    {
+      method: "POST",
+    }
+  ).then((res) => {
+    if (res.ok) {
+      alert("Database Updated!");
+    }
+    return res.json();
+  });
+};
+
+// const reArrange = () => {
+//   let high = [], low = [];
+//   for (let i = 0; i < document.getElementsByClassName('task').length; i++) {
+//     if (i == 0) continue
+//     document.getElementsByClassName('task')[i].priority ? high.push(document.getElementsByClassName('task')[i]) : low.push(document.getElementsByClassName('task')[i]);
+//   }
+  
+//   for (let i = 0; i < low.length; i ++){
+//     console.log(low[i][0])
+//   }
+//   for (let i = 0; i < allTask.length; i++) {
+//     if (i == 0) continue
+//     high.length > 0 ? document.getElementsByClassName('task')[i] = high.pop(): document.getElementsByClassName('task')[i].innerHTML = low.pop();
+//   }
+// };
+// setTimeout(() => {
+//   reArrange()
+// }, 1000)

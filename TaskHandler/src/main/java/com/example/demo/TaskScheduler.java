@@ -51,13 +51,14 @@ public class TaskScheduler {
         });
     }
 
-    public Task updateTaskById(String id, String name, String description, Boolean priority, Boolean status)
+    public Task updateTaskById(String id, String name, String description, Boolean priority, Boolean status, String deadline)
             throws IOException {
         Task task = getTaskById(id);
         task.setName(name);
         task.setDescrption(description);
         task.setPriority(priority);
         task.setStatus(status);
+        task.setDeadline(deadline);
 
         deleteTaskById(id);
         addTask(task);

@@ -106,12 +106,12 @@ public class Mapper{
         return ResponseEntity.ok(summary);
     }
 
+    @CrossOrigin
     @PostMapping("/add-task/")
     public ResponseEntity<String> addTask(@RequestParam String username, @RequestParam String password, 
         @RequestParam String name, @RequestParam String desc, 
         @RequestParam Boolean priority, @RequestParam Boolean status, @RequestParam String deadline) throws IOException {
             Task task = new Task(name, desc, priority, status, deadline);
-            System.err.println(task);
 
             TaskScheduler ts = new TaskScheduler();
             ts.FILEPATH += username + "_" + password + ".json";
@@ -127,17 +127,19 @@ public class Mapper{
         return ResponseEntity.ok(task);
     }
 
+    @CrossOrigin
     @PostMapping("/update-task/id/")
     public ResponseEntity<Task> updateTaskById(@RequestParam String username, 
         @RequestParam String password, @RequestParam String id, 
         @RequestParam String name, @RequestParam String desc,
-        @RequestParam Boolean priority, @RequestParam Boolean status) throws IOException{
+        @RequestParam Boolean priority, @RequestParam Boolean status, @RequestParam String deadline) throws IOException{
             TaskScheduler ts = new TaskScheduler();
             ts.FILEPATH += username + "_" + password + ".json";
-            Task task = ts.updateTaskById(id, name, desc, priority, status);
+            Task task = ts.updateTaskById(id, name, desc, priority, status, deadline);
             return ResponseEntity.ok(task);
         }
 
+    @CrossOrigin
     @PostMapping("/delete-task/id/")
     public ResponseEntity<String> deleteTaskById(@RequestParam String username, @RequestParam String password, @RequestParam String id) throws IOException{
         TaskScheduler ts = new TaskScheduler();

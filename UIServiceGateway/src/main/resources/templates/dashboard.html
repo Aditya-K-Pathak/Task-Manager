@@ -12,12 +12,40 @@
         <h3 id="heading-description"></h3>
     </section>
     <section id="dashboard">
-        <h2>Your Task Summary</h2>
+        <h1>Your Task Summary</h1>
         <div id="chartContainer">
             <canvas id="myChart" style="width:300;max-width:600px"></canvas>
             <canvas id="myChart1" style="width:300;max-width:600px"></canvas>
             <canvas id="myChart2" style="width:300;max-width:600px"></canvas>
             <canvas id="line-chart" class="w-full"></canvas>
+        </div>
+    </section>
+    <section id="tasklist">
+        <div class="task" id="add" onclick="addTask()">
+            <h1>+</h1>
+        </div>
+    </section>
+    <section id="overlay" onclick="disappear()">
+        <div id="overlay-container" onclick="event.stopPropagation()">
+            <form action="#" method="POST">
+                <input type="text" id="id" disabled placeholder="Auto Generated Id">
+                <input type="text" id="taskname" placeholder="TaskName" required>
+                <input type="text" id="deadline" placeholder="Deadline (YYYY-MM-DD)" required>
+                <select name="" id="selectPriority">
+                    <option value="true">High</option>
+                    <option value="false">Low</option>
+                </select>
+                <select name="" id="selectStatus">
+                    <option value="true">Completed</option>
+                    <option value="false">Incomplete</option>
+                </select>
+                <textarea name="" id="taskdesc" placeholder="Task Description" required></textarea>
+            </form>
+            <div id="button-holder">
+            <button class="button" id='delete' onclick="deleteData()">Delete</button>
+            <button class="button" id='add' onclick="addData()">Add</button>
+            <button class="button" id='update' onclick="updateData()">Update</button>
+            </div>
         </div>
     </section>
 </body>

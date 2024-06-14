@@ -13,20 +13,20 @@
             <h1>Login</h1>
             <div class="form-field">
                 <label for="username">Username</label>
-                <input type="text" name="username" id="username" placeholder="Username">
-                <span id="usernameErr"></span>
+                <input type="text" name="username" id="username" placeholder="Username" onchange="validateUsername()">
+                <div class="err" id="usernameErr"></div>
             </div>
 
             <div class="form-field">
                 <label for="email">E-mail Id</label>
                 <input type="text" name="email" id="email" placeholder="someone@example.com">
-                <span id="emailErr"></span>
+                <div class="err" id="emailErr"></div>
             </div>
     
-            <div>
+            <div class="form-field">
                 <label for="password">Password</label>
-                <input type="text" id="password" name="password" placeholder="Password">
-                <span id="passwordErr"></span>
+                <input type="password" id="password" name="password" placeholder="Password">
+                <div class="err" id="passwordErr"></div>
             </div>
 
             <input type="submit" id="submit" onclick="fetch_details()">

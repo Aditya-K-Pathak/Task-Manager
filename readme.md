@@ -32,4 +32,5 @@ Building Order
 
     6) [11-06-2024] [Dispatcer] Added a mail delivery agent implemented in python to confirm Task addition.
 
-    7) []
+    7) [13 -06-2024] [UIServiceGateway] Added APIs to get tasks and display it to the user.
+        - Added Buttons to Create, Delete and Update Tasks.

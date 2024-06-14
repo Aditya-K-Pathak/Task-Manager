@@ -1,1 +1,3 @@
-/src/main/secrets
+*.json
+*.txt
+/Dispatcher/Dispatcher/key.py
